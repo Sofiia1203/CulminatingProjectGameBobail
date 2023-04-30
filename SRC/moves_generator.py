@@ -29,4 +29,5 @@ def generate_all_moves(pos,player,is_first_move):
                             new_pos = copy.deepcopy(inter_pos)
                             new_pos[r1][c1] = 0
                             new_pos[r2][c2] = player
-                            result.append(new_pos)                      
+                            result.append(new_pos) 
+    return result                     

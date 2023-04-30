@@ -11,6 +11,7 @@ def ps(pos,r,c):
 
 def print_position(pos):
     
+    print(" ")
     print("  ---------------------")
     print(f"5 | {ps(pos,4,0)} | {ps(pos,4,1)} | {ps(pos,4,2)} | {ps(pos,4,3)} | {ps(pos,4,4)} |")
     
@@ -28,6 +29,9 @@ def print_position(pos):
     
     print("  ---------------------")
     print("    1   2   3   4   5")
+    print(" ")
 
 
-
+def parse_move(user_input):
+    coordinates = user_input.split(maxsplit = 4)
+    return (int(coordinates[0]), int(coordinates[1]), int(coordinates[2]), int(coordinates[3]))
