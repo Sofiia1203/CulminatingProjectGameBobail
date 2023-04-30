@@ -1,3 +1,5 @@
+import game_move_rules as gmr
+
 board_cell_to_string = {
     0:" ",
     1:"*",
@@ -35,3 +37,35 @@ def print_position(pos):
 def parse_move(user_input):
     coordinates = user_input.split(maxsplit = 4)
     return (int(coordinates[0]), int(coordinates[1]), int(coordinates[2]), int(coordinates[3]))
+
+def parse_yellow_move(user_input):
+    coordinates = user_input.split(maxsplit = 4)
+    return (int(coordinates[0]), int(coordinates[1]))
+
+def enter_regular_move(pos,player,move_description):
+    while True:
+        user_input = input(f"{move_description}ex. 1 1 4 1, means move a stone from cell 1 1 (row=1, col=1) to cell 4 1 (row=4, col=1): ")
+        r1,c1,r2,c2 = parse_move(user_input)
+        if gmr.is_correct_move(pos,player,r1-1,c1-1,r2-1,c2-1):
+            print("Great move!")
+            return (r1-1,c1-1,r2-1,c2-1)
+        else: 
+            print("Incorrect move!")
+
+#find the yellow stone's cell
+def find_yellow_stone(pos):
+    for r in range(0,5):
+        for c in range(0,5):
+            if pos[r][c] == 3:
+                return (r,c)
+
+def enter_yellow_move(pos,move_description):
+    yellow_r,yellow_c = find_yellow_stone(pos)
+    while True:
+        user_input = input(f"{move_description} Yellow stone is placed in {yellow_r+1} {yellow_c+1}. Enter where to move. Ex. 3 4, means move to row 3, col 4: ")
+        r2,c2 = parse_yellow_move(user_input)
+        if gmr.is_correct_yellow_move(pos,yellow_r,yellow_c,r2-1,c2-1):
+            print("Great move!")
+            return (yellow_r,yellow_c,r2-1,c2-1)
+        else: 
+            print("Incorrect move!")
