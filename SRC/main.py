@@ -34,6 +34,13 @@ while True:
     pos = comp_positions[selected_position_index] #Updates the "pos"
     tu.print_position(pos)
     
+    check_result = gmr.check_terminal_position(user_player,pos)
+    if check_result == 1:
+        print("Congratulations! You won!")
+        break
+    elif check_result == -1:
+        print("You lost! Game over!")
+
     #The next player's move
     #The yellow move
     r1,c1,r2,c2 = tu.enter_yellow_move(pos,"Make a move with the yellow stone....") 
@@ -46,3 +53,10 @@ while True:
     pos[r1][c1] = 0
     pos[r2][c2] = user_player
     tu.print_position(pos)
+
+    check_result = gmr.check_terminal_position(comp_player,pos)
+    if check_result ==-1:
+        print("Congratulations! You won!")
+        break
+    elif check_result == 1:
+        print("You lost! Game over!")

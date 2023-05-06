@@ -52,16 +52,9 @@ def enter_regular_move(pos,player,move_description):
         else: 
             print("Incorrect move!")
 
-#Find the yellow stone's cell
-def find_yellow_stone(pos):
-    #checks each row and column on the game board
-    for r in range(0,5): 
-        for c in range(0,5):
-            if pos[r][c] == 3: #if a cell, where the value is 3, is found, returns its row and column indices as a tuple
-                return (r,c)
 
 def enter_yellow_move(pos,move_description):
-    yellow_r,yellow_c = find_yellow_stone(pos)
+    yellow_r,yellow_c = gmr.find_yellow_stone(pos)
     while True:
         user_input = input(f"{move_description} Yellow stone is placed in {yellow_r+1} {yellow_c+1}. Enter where to move. Ex. 3 4, means move to row 3, col 4: ")
         r2,c2 = parse_yellow_move(user_input) #parses the user's input into separate integers
