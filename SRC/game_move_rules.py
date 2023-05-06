@@ -1,3 +1,4 @@
+#Indicates the number by which the value of column and row is need to be changed 
 def sign(a):
   if a > 0:
     return 1
@@ -23,15 +24,17 @@ def is_correct_move(pos,player,row1,col1,row2,col2):
   if not (row1 == row2 or col1 == col2 or row1+col1 == row2+col2 or row1-col1 == row2-col2):
     return False
     
-  #Check that all cells of the line are empty
-  delta_row = sign(row2-row1)
-  delta_col = sign(col2-col1)
+  #check that all cells of the line are empty
+  # vector (delta_row,delta_col) represents the direction from starting to the destination position
+  delta_row = sign(row2-row1) # applies the function "sign" to the difference of distination and starting position to get direction
+  delta_col = sign(col2-col1) # applies the function "sign" to the difference of distination and starting position to get direction
   r = row1
   c = col1
   while True:
-    r += delta_row
+    # cell with coordinates(r,c) is the next cell in the line
+    r += delta_row 
     c += delta_col
-    if pos[r][c] != 0:
+    if pos[r][c] != 0: # if any cell in the line is not equal to zero(means not empty) then move on this line is incorrect
       return False
     if r == row2 and c == col2:
       break
