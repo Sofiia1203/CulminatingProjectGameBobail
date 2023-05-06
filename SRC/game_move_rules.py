@@ -7,7 +7,7 @@ def sign(a):
     return 0
 
 def is_correct_move(pos,player,row1,col1,row2,col2):
-  #check that correct stone in row1 col1
+  #Check that correct stone in row1 col1
   if pos[row1][col1] != player:
     return False
 
@@ -23,7 +23,7 @@ def is_correct_move(pos,player,row1,col1,row2,col2):
   if not (row1 == row2 or col1 == col2 or row1+col1 == row2+col2 or row1-col1 == row2-col2):
     return False
     
-  #check that all cells of the line are empty
+  #Check that all cells of the line are empty
   delta_row = sign(row2-row1)
   delta_col = sign(col2-col1)
   r = row1
@@ -43,14 +43,15 @@ def is_correct_move(pos,player,row1,col1,row2,col2):
   #check that the next cell in line is occupied
   r += delta_row
   c += delta_col
-  if pos[r][c] != 0:
+  if pos[r][c] != 0: #if coordinates(r and c) of a cell are not equal to zero, means that the cell is occupied 
     return True
   else: 
     return False
 
+#Checks if the move with the yellow stone was properly done
 def is_correct_yellow_move(pos,row1,col1,row2,col2):
-  if pos[row1][col1] == 3:
-    if pos[row2][col2] == 0:
-      if abs(row1-row2) <= 1 and abs(col1-col2) <= 1 and not (row1==row2 and col1==col2):
+  if pos[row1][col1] == 3: #checks that the a yellow stone is present in the starting cell
+    if pos[row2][col2] == 0: #check that the destination cell is empty
+      if abs(row1-row2) <= 1 and abs(col1-col2) <= 1 and not (row1==row2 and col1==col2): #Checks if the destination cell is a neighbour to the starting cell and not the same cell.
         return True
   return False
