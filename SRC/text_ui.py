@@ -45,6 +45,8 @@ def parse_yellow_move(user_input):
 def enter_regular_move(pos,player,move_description):
     while True:
         user_input = input(f"{move_description}ex. 1 1 4 1, means move a stone from cell 1 1 (row=1, col=1) to cell 4 1 (row=4, col=1): ")
+        if user_input.lower() == "stop":
+            raise Exception("User stopped the game")
         try:
             r1,c1,r2,c2 = parse_move(user_input) #Parses the user's input into separate integers
         except ValueError:
@@ -61,6 +63,8 @@ def enter_yellow_move(pos,move_description):
     yellow_r,yellow_c = gmr.find_yellow_stone(pos)
     while True:
         user_input = input(f"{move_description} Yellow stone is placed in {yellow_r+1} {yellow_c+1}. Enter where to move. Ex. 3 4, means move to row 3, col 4: ")
+        if user_input.lower() == "stop":
+            raise Exception("User stopped the game")
         try:
             r2,c2 = parse_yellow_move(user_input) #parses the user's input into separate integers
         except ValueError: 

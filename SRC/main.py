@@ -2,6 +2,7 @@ import game_move_rules as gmr
 import text_ui as tu
 import moves_generator as mg
 import random
+import sys
 
 user_player = 1
 comp_player = 2
@@ -29,8 +30,11 @@ print("'----------------' '----------------' '----------------' '---------------
 print("Welcome to the fascinating world of a game BOBAIL!")
 tu.print_position(pos)
 
-#User makes their first move
-r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter first move....")
+try:
+    #User makes their first move
+    r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter first move....")
+except Exception:
+    sys.exit()
 
 pos[r1][c1] = 0
 pos[r2][c2] = user_player
@@ -54,19 +58,22 @@ while True:
         print("You lost! Game over!")
         break
 
-    #The next player's move
-    #The yellow move
-    r1,c1,r2,c2 = tu.enter_yellow_move(pos,"Make a move with the yellow stone....") 
-    pos[r1][c1] = 0
-    pos[r2][c2] = 3
-    tu.print_position(pos)
-    
-    if not (r2 == 0 or r2 == 4): # ask for user's input of regular move if yellow move not to the first or last row
-        #The move with regular stone
-        r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter first move....")
+    try:
+        #The next player's move
+        #The yellow move
+        r1,c1,r2,c2 = tu.enter_yellow_move(pos,"Make a move with the yellow stone....") 
         pos[r1][c1] = 0
-        pos[r2][c2] = user_player
+        pos[r2][c2] = 3
         tu.print_position(pos)
+        
+        if not (r2 == 0 or r2 == 4): # ask for user's input of regular move if yellow move not to the first or last row
+            #The move with regular stone
+            r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter your move....")
+            pos[r1][c1] = 0
+            pos[r2][c2] = user_player
+            tu.print_position(pos)
+    except Exception:
+        break
 
     check_result = gmr.check_terminal_position(comp_player,pos)
     if check_result ==-1:
