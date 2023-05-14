@@ -25,7 +25,7 @@ def heuristic_value(pos):
     return result
 
 #recursion
-def find_best_comp_move(pos, depth, player):
+def find_best_move(pos, depth, player):
     if depth == 0:
         return (heuristic_value(pos),None)
     
@@ -35,7 +35,7 @@ def find_best_comp_move(pos, depth, player):
     comp_positions = mg.generate_all_moves(pos, player, False)
 
     for child_position in comp_positions:
-        position_value, _ = find_best_comp_move(child_position, depth-1, 3 - player) #Change one player to opposite (3-1=2,3-2=1)
+        position_value, _ = find_best_move(child_position, depth-1, 3 - player) #Change one player to opposite (3-1=2,3-2=1)
 
         if player == cnst.comp_player:
             if position_value > result_value:
