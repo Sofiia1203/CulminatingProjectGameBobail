@@ -49,7 +49,7 @@ while True:
     #selected_position_index = random.randint(0,number_of_positions-1) #Randomly selects one possible position to display as the computer's next move
     #pos = comp_positions[selected_position_index] #Updates the "pos"
     
-    _ , pos = bm.find_best_comp_move(pos,1)
+    _ , pos = bm.find_best_comp_move(pos, 2, cnst.comp_player)
 
     tu.print_position(pos)
     
