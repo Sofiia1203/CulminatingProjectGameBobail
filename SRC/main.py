@@ -3,9 +3,8 @@ import text_ui as tu
 import moves_generator as mg
 import random
 import sys
-
-user_player = 1
-comp_player = 2
+import constants as cnst
+import best_move as bm
 
 #2D list that represents the game board
 pos = [
@@ -32,25 +31,29 @@ tu.print_position(pos)
 
 try:
     #User makes their first move
-    r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter first move....")
+    r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter first move....")
 except Exception:
     sys.exit()
 
 pos[r1][c1] = 0
-pos[r2][c2] = user_player
+pos[r2][c2] = cnst.user_player
 tu.print_position(pos)
 
 #Main game loop
 while True:
     print("Let me think...")
     #Computer makes a move
-    comp_positions = mg.generate_all_moves(pos,comp_player,False) #Generates all possible moves for the computer using "pos" which is the game board, and indicates that it's not the user's turn, which determines what pieces can move
-    number_of_positions = len(comp_positions) #Determine the number of possible positions to choose from
-    selected_position_index = random.randint(0,number_of_positions-1) #Randomly selects one possible position to display as the computer's next move
-    pos = comp_positions[selected_position_index] #Updates the "pos"
+    
+    #comp_positions = mg.generate_all_moves(pos,cnst.comp_player,False) #Generates all possible moves for the computer using "pos" which is the game board, and indicates that it's not the user's turn, which determines what pieces can move
+    #number_of_positions = len(comp_positions) #Determine the number of possible positions to choose from
+    #selected_position_index = random.randint(0,number_of_positions-1) #Randomly selects one possible position to display as the computer's next move
+    #pos = comp_positions[selected_position_index] #Updates the "pos"
+    
+    _ , pos = bm.find_best_comp_move(pos,1)
+
     tu.print_position(pos)
     
-    check_result = gmr.check_terminal_position(user_player,pos)
+    check_result = gmr.check_terminal_position(cnst.user_player,pos)
     if check_result == 1:
         print("Congratulations! You won!")
         break
@@ -68,14 +71,14 @@ while True:
         
         if not (r2 == 0 or r2 == 4): # ask for user's input of regular move if yellow move not to the first or last row
             #The move with regular stone
-            r1,c1,r2,c2 = tu.enter_regular_move(pos,user_player,"Enter your move....")
+            r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter your move....")
             pos[r1][c1] = 0
-            pos[r2][c2] = user_player
+            pos[r2][c2] = cnst.user_player
             tu.print_position(pos)
     except Exception:
         break
 
-    check_result = gmr.check_terminal_position(comp_player,pos)
+    check_result = gmr.check_terminal_position(cnst.comp_player,pos)
     if check_result ==-1:
         print("Congratulations! You won!")
         break

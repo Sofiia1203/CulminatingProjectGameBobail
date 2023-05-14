@@ -76,13 +76,13 @@ def find_yellow_stone(pos):
 #   -1: player loses 
 def check_terminal_position(player,pos):
   r_yellow,c_yellow = find_yellow_stone(pos)
-  if r_yellow == 0:
+  if r_yellow == 4:
     if player == 1:
       return -1
     else:
       return 1
   
-  if r_yellow == 4:
+  if r_yellow == 0:
     if player == 2:
       return -1
     else:
