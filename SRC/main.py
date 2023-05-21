@@ -27,6 +27,10 @@ print("| '--------------' | '--------------' | '--------------' | '-------------
 print("'----------------' '----------------' '----------------' '----------------' '----------------' '----------------' ")
 
 print("Welcome to the fascinating world of a game BOBAIL!")
+
+level = int(input("Enter the level of difficulties(1. Rookie 2.Intermidiate 3.Expert): "))
+
+
 tu.print_position(pos)
 
 try:
@@ -49,9 +53,10 @@ while True:
     #selected_position_index = random.randint(0,number_of_positions-1) #Randomly selects one possible position to display as the computer's next move
     #pos = comp_positions[selected_position_index] #Updates the "pos"
     
-    _ , pos = bm.find_best_move(pos, 2, cnst.comp_player)
+    _ , pos = bm.find_best_move(pos, level, cnst.comp_player)
 
-    tu.print_position(pos)
+    if pos != None:
+        tu.print_position(pos)
     
     check_result = gmr.check_terminal_position(cnst.user_player,pos)
     if check_result == 1:
