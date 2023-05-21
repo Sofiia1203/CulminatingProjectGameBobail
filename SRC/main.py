@@ -47,11 +47,6 @@ while True:
     print("Let me think...")
     #Computer makes a move
     
-    #comp_positions = mg.generate_all_moves(pos,cnst.comp_player,False) #Generates all possible moves for the computer using "pos" which is the game board, and indicates that it's not the user's turn, which determines what pieces can move
-    #number_of_positions = len(comp_positions) #Determine the number of possible positions to choose from
-    #selected_position_index = random.randint(0,number_of_positions-1) #Randomly selects one possible position to display as the computer's next move
-    #pos = comp_positions[selected_position_index] #Updates the "pos"
-    
     _ , pos = bm.find_best_move(pos, level, cnst.comp_player)
 
     if pos != None:
