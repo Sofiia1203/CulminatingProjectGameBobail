@@ -28,8 +28,7 @@ print("'----------------' '----------------' '----------------' '---------------
 
 print("Welcome to the fascinating world of a game BOBAIL!")
 
-level = int(input("Enter the level of difficulties(1. Rookie 2.Intermidiate 3.Expert): "))
-
+level = tu.enter_level()
 
 tu.print_position(pos)
 

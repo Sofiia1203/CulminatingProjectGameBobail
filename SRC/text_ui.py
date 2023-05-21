@@ -75,3 +75,18 @@ def enter_yellow_move(pos,move_description):
             return (yellow_r,yellow_c,r2-1,c2-1)
         else: 
             print("Incorrect move!")
+
+def enter_level():
+    while True:
+        level_str = input("Enter the level of difficulties(1. Rookie 2.Intermidiate 3.Expert): ")
+        if level_str.lower() == "stop":
+            raise Exception("User stopped the game")
+        try:
+            level = int(level_str)
+        except ValueError: 
+            print("Input was not recognized! Try again!")
+            continue
+        if level >= 1 and level <= 3:
+            return level
+        else: 
+            print("Input is incorrect! Try again!")
