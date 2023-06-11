@@ -5,6 +5,7 @@ import random
 import sys
 import constants as cnst
 import best_move as bm
+from datetime import datetime
 
 #2D list that represents the game board
 pos = [
@@ -26,8 +27,8 @@ print("| |              | | |              | | |              | | |             
 print("| '--------------' | '--------------' | '--------------' | '--------------' | '--------------' | '--------------' |")
 print("'----------------' '----------------' '----------------' '----------------' '----------------' '----------------' ")
 
-print("Welcome to the fascinating world of a game BOBAIL!")
-
+print("\n------------------------------- Welcome to the fascinating world of a game BOBAIL! -------------------------------")
+print("\n")
 level = tu.enter_level()
 
 tu.print_position(pos)
@@ -38,8 +39,11 @@ try:
 except Exception:
     sys.exit()
 
+# Set the value of the starting position cell to 0
 pos[r1][c1] = 0
+# Set the value of the destination position cell to the user player value
 pos[r2][c2] = cnst.user_player
+# Print updated position
 tu.print_position(pos)
 
 #Main game loop
@@ -51,25 +55,28 @@ while True:
 
     if pos != None:
         tu.print_position(pos)
+        check_result = gmr.check_terminal_position(cnst.user_player, pos)
+        if check_result == 1:
+            print("Congratulations! You won!")
+            break
+        elif check_result == -1:
+            print("You lost! Game over!")
+            break
+    else:
+        print("There are no moves for me. You win!")
+        break
     
-    check_result = gmr.check_terminal_position(cnst.user_player,pos)
-    if check_result == 1:
-        print("Congratulations! You won!")
-        break
-    elif check_result == -1:
-        print("You lost! Game over!")
-        break
-
     try:
-        #The next player's move
-        #The yellow move
-        r1,c1,r2,c2 = tu.enter_yellow_move(pos,"Make a move with the yellow stone....") 
+        # The next player's move
+        # The yellow move
+        r1,c1,r2,c2 = tu.enter_yellow_move(pos, "Make a move with the yellow stone....") 
         pos[r1][c1] = 0
         pos[r2][c2] = 3
         tu.print_position(pos)
         
-        if not (r2 == 0 or r2 == 4): # ask for user's input of regular move if yellow move not to the first or last row
-            #The move with regular stone
+        # Ask for user's input of regular move if yellow move not to the first or last row
+        if not (r2 == 0 or r2 == 4): 
+            # The move with regular stone
             r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter your move....")
             pos[r1][c1] = 0
             pos[r2][c2] = cnst.user_player

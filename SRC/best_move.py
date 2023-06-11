@@ -41,11 +41,11 @@ def find_best_move(pos, depth, player):
             position_value, _ = find_best_move(child_position, depth-1, 3 - player) #Change one player to opposite (3-1=2,3-2=1)
 
             if player == cnst.comp_player:
-                if position_value > result_value:
+                if position_value >= result_value:
                     result_value = position_value
                     result_position = child_position
             else:
-                if position_value < result_value:
+                if position_value <= result_value:
                     result_value = position_value
                     result_position = child_position
             

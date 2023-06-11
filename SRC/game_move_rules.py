@@ -66,7 +66,8 @@ def find_yellow_stone(pos):
     # checks each row and column on the game board
     for r in range(0,5): 
         for c in range(0,5):
-            if pos[r][c] == 3: # if a cell, where the value is 3, is found, returns its row and column indices as a tuple
+            # If a cell, where the value is 3, is found, returns its row and column indices as a tuple
+            if pos[r][c] == 3: 
                 return (r,c)
 
 # Checks according to rules of the game whether a player won or not
@@ -74,7 +75,7 @@ def find_yellow_stone(pos):
 #   1: player wins
 #   0: nobody wins. game continues
 #   -1: player loses 
-def check_terminal_position(player,pos):
+def check_terminal_position(player, pos):
   r_yellow,c_yellow = find_yellow_stone(pos)
   if r_yellow == 4:
     if player == 1:
