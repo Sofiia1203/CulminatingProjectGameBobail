@@ -54,15 +54,19 @@ test_data = (
 )
 
 def test_fun(pos, depth, expected_position, expected_value):
+    # Variable to count the number of errors found during the test
     errors_found = 0
+    # Call the find_best_move function to get the actual value and new position
     value , new_pos = bm.find_best_move(pos, depth, cnst.comp_player)
 
+    # Compare the actual value with the expected value
     if value != expected_value:
         print("Test failed because")
         print(f"    Actual value = {value}")
         print(f"    Expected value = {expected_value}")
         errors_found += 1
 
+    # Compare the new position with the expected position
     if new_pos != expected_position:
         print("Test failed because")
         print("    Actual position = ")
@@ -74,7 +78,9 @@ def test_fun(pos, depth, expected_position, expected_value):
     if errors_found == 0:
         print("Test passed successufully")
 
-#print(test_data)
+# Iterate over the test_data list and perform the tests
 for element in test_data:
     pos, depth, expected_position, expected_value = element
+
+    # Call the test_fun function with the current test data
     test_fun(pos, depth, expected_position, expected_value)

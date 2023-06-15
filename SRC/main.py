@@ -1,11 +1,9 @@
 import game_move_rules as gmr
 import text_ui as tu
 import moves_generator as mg
-import random
 import sys
 import constants as cnst
 import best_move as bm
-from datetime import datetime
 
 #2D list that represents the game board
 pos = [
@@ -30,12 +28,12 @@ print("'----------------' '----------------' '----------------' '---------------
 print("\n------------------------------- Welcome to the fascinating world of a game BOBAIL! -------------------------------")
 print("\n")
 level = tu.enter_level()
-
+print("\nGood Luck!")
 tu.print_position(pos)
 
 try:
     #User makes their first move
-    r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter first move....")
+    r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter your first move. ")
 except Exception:
     sys.exit()
 
@@ -69,7 +67,7 @@ while True:
     try:
         # The next player's move
         # The yellow move
-        r1,c1,r2,c2 = tu.enter_yellow_move(pos, "Make a move with the yellow stone....") 
+        r1,c1,r2,c2 = tu.enter_yellow_move(pos, "Make a move with the cross. ") 
         pos[r1][c1] = 0
         pos[r2][c2] = 3
         tu.print_position(pos)
@@ -77,7 +75,7 @@ while True:
         # Ask for user's input of regular move if yellow move not to the first or last row
         if not (r2 == 0 or r2 == 4): 
             # The move with regular stone
-            r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter your move....")
+            r1,c1,r2,c2 = tu.enter_regular_move(pos,cnst.user_player,"Enter your first move. ")
             pos[r1][c1] = 0
             pos[r2][c2] = cnst.user_player
             tu.print_position(pos)

@@ -14,26 +14,26 @@ def is_correct_move(pos,player,row1,col1,row2,col2):
   if pos[row1][col1] != player:
     return False
 
-  # check that row2 col2 is empty cell
+  # Check that row2 col2 is empty cell
   if pos[row2][col2] != 0:
     return False
 
-  # check that row1 col1 and row2 col2 are different cells
+  # Check that row1 col1 and row2 col2 are different cells
   if row1==row2 and col1==col2:
     return False
     
-  # check that row1 col1 and row2 col2 are on the same line: vertical or horizontal or diagonal
+  # Check that row1 col1 and row2 col2 are on the same line: vertical or horizontal or diagonal
   if not (row1 == row2 or col1 == col2 or row1+col1 == row2+col2 or row1-col1 == row2-col2):
     return False
     
-  # check that all cells of the line are empty
-  # vector (delta_row,delta_col) represents the direction from starting to the destination position
+  # Check that all cells of the line are empty
+  # Vector (delta_row,delta_col) represents the direction from starting to the destination position
   delta_row = sign(row2-row1) # applies the function "sign" to the difference of distination and starting position to get direction
   delta_col = sign(col2-col1) # applies the function "sign" to the difference of distination and starting position to get direction
   r = row1
   c = col1
   while True:
-    # cell with coordinates(r,c) is the next cell in the line
+    # Cell with coordinates(r,c) is the next cell in the line
     r += delta_row 
     c += delta_col
     if pos[r][c] != 0: # if any cell in the line is not equal to zero(means not empty) then move on this line is incorrect
@@ -41,7 +41,7 @@ def is_correct_move(pos,player,row1,col1,row2,col2):
     if r == row2 and c == col2:
       break
 
-  # check that r c are on the edge of the board
+  # Check that r c are on the edge of the board
   if r == 0 or r == 4 or c == 0 or c ==4:
     return True
     
@@ -63,7 +63,7 @@ def is_correct_yellow_move(pos,row1,col1,row2,col2):
 
 # Find the yellow stone's cell
 def find_yellow_stone(pos):
-    # checks each row and column on the game board
+    # Checks each row and column on the game board
     for r in range(0,5): 
         for c in range(0,5):
             # If a cell, where the value is 3, is found, returns its row and column indices as a tuple
@@ -95,6 +95,6 @@ def check_terminal_position(player, pos):
     c = c_yellow + cell[1]
     if r >= 0 and c >= 0 and r <= 4 and c <= 4:
       if pos[r][c] == 0:
-        return 0 # nobody wins: game continues
+        return 0 # Nobody wins: game continues
     
-  return -1 # means lost because the yellow stone has no way to go
+  return -1 # Means lost because the yellow stone has no way to go

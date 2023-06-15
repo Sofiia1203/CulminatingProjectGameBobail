@@ -71,7 +71,7 @@ def enter_yellow_move(pos,move_description):
     yellow_r,yellow_c = gmr.find_yellow_stone(pos)
     while True:
         # Ask the user to enter where to move the yellow stone
-        user_input = input(f"{move_description} Yellow stone is placed in {yellow_r+1} {yellow_c+1}. Enter where to move. Ex. 3 4, means move to row 3, col 4: ")
+        user_input = input(f"{move_description}The cross is placed in {yellow_r+1} {yellow_c+1}. Enter the coordinates of a destination cell. Ex. 3 4, means move to row 3, col 4: ")
         # Check if the user wants to stop the game
         if user_input.lower() == "stop": 
             raise Exception("User stopped the game")
@@ -90,7 +90,7 @@ def enter_yellow_move(pos,move_description):
 # Ask user to enter the level of difficulty
 def enter_level():
     while True:
-        level_str = input("Enter the level of difficulties(1. Rookie 2.Intermidiate 3.Expert): ")
+        level_str = input("Enter the level of difficulty(1. Rookie 2.Intermidiate 3.Expert): ")
         # Check if the user wants to stop the game
         if level_str.lower() == "stop": 
             raise Exception("User stopped the game")
